@@ -4,8 +4,56 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Function library example</title>
+    <style>
+      input {
+        font-size: 2em;
+        margin: 10px 1px 0;
+      }
+    </style>
   </head>
-  <script></script>
-  <body></body>
+
+  <body>
+    <input class="numberInput" type="text" />
+    <p class="square"></p>
+    <p class="cube"></p>
+    <p class="factorial"></p>
+
+    <script>
+      const input = document.querySelector(".numberInput");
+      const paraSquare = document.querySelector(".square");
+      const paraCube = document.querySelector(".cube");
+      const paraFactorial = document.querySelector(".factorial");
+
+      function squared(num) {
+        return num * num;
+      }
+      function cubed(num) {
+        return num * num * num;
+      }
+      function factorial(num) {
+        if (num < 0) return undefined;
+        if (num === 0) return 1;
+        let x = num - 1;
+        while (x > 1) {
+          num *= x;
+          x--;
+        }
+        return num;
+      }
+      input.addEventListener("change", () => {
+        console.log("changes");
+        const num = parseFloat(input.value);
+        if (isNaN(num)) {
+          paraSquare.textContent = "You need to enter a number!";
+          paraCube.textContent = "";
+          paraFactorial.textContent = "";
+        } else {
+          paraSquare.textContent = `${num} square is ${squared(num)}.`;
+          paraCube.textContent = `${num} cubed is ${cubed(num)}`;
+          paraFactorial.textContent = `${num} factorial is ${factorial(num)}`;
+        }
+      });
+    </script>
+  </body>
 </html>
